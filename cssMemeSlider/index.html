@@ -9,11 +9,18 @@
   <body>
     <main>
       <div class="wrapper">
-        <div class="meme-pic">
+        <div id="memeSlider">
+          <script type="module">
+            import { meme } from "./memeBank.js";
+            import { memeSlider } from "./main.js";
+
+            const slider = new memeSlider(meme);
+            slider.render();
+          </script>
         </div>
-        <div class="text-part"></div>
-        <div class="slider"></div>
+        <script type="module" src="./main.js"></script>
       </div>
     </main>
+    <script type="module" src="./memeBank.js"></script>
   </body>
 </html>
