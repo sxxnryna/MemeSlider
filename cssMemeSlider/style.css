@@ -85,14 +85,35 @@
   background-color: #00c3ff;
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  transition: background-color 0.5s, transform 0.5s;
 }
 
 .dot.active {
   background-color: transparent;
   box-shadow: inset 0 0 0 2px white;
+  transform: scale(1.2);
 }
 
 .dot:hover {
   background-color: white;
+}
+
+/*Pics&text fade-in/out*/
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.fade-in-text {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.fade-out-text {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
 }

@@ -5,8 +5,8 @@ export class memeSlider {
     this.memes = memes;
     this.currentIndex = 0;
     this.render();
-    this.handleResize(); 
-    window.addEventListener("resize", this.handleResize.bind(this)); 
+    this.handleResize();
+    window.addEventListener("resize", this.handleResize.bind(this));
   }
 
   render() {
@@ -19,13 +19,13 @@ export class memeSlider {
     const memePicture = document.createElement("img");
     memePicture.src = `./${this.memes[this.currentIndex].img}`;
     memePicture.alt = "meme";
-    memePicture.classList.add("memePic");
+    memePicture.classList.add("memePic", "fade-in");
 
     const subGridBox = document.createElement("div");
     subGridBox.classList.add("subGridBox");
 
     const memeTextBox = document.createElement("div");
-    memeTextBox.classList.add("memeTextBox");
+    memeTextBox.classList.add("memeTextBox", "fade-in-text");
 
     const memeDescription = document.createElement("p");
     memeDescription.classList.add("memeDescription");
@@ -61,7 +61,28 @@ export class memeSlider {
   }
 
   updateSlider() {
-    this.render();
+    const sliderContainer = document.getElementById("memeSlider");
+    const memePicture = sliderContainer.querySelector(".memePic");
+    const memeTextBox = sliderContainer.querySelector(".memeTextBox");
+    const memeDescription = sliderContainer.querySelector(".memeDescription");
+    const dots = sliderContainer.querySelectorAll(".dot");
+
+    memePicture.classList.add("fade-out");
+    memeTextBox.classList.add("fade-out-text");
+
+    setTimeout(() => {
+      memePicture.src = `./${this.memes[this.currentIndex].img}`;
+      memeDescription.textContent = this.memes[this.currentIndex].description;
+
+      memePicture.classList.remove("fade-out");
+      memePicture.classList.add("fade-in");
+
+      memeTextBox.classList.remove("fade-out-text");
+      memeTextBox.classList.add("fade-in-text");
+
+      dots.forEach((dot) => dot.classList.remove("active"));
+      dots[this.currentIndex].classList.add("active");
+    }, 500);
   }
 
   handleResize() {
@@ -70,17 +91,25 @@ export class memeSlider {
     const subGridBox = sliderContainer.querySelector(".subGridBox");
 
     if (window.innerWidth >= 500 && window.innerWidth <= 768) {
-
-      sliderContainer.style.display = "flex";
-      sliderContainer.style.flexDirection = "column";
-      imgBox.style.order = "1";
-      subGridBox.style.order = "2";
+      if (subGridBox) {
+        while (subGridBox.firstChild) {
+          sliderContainer.insertBefore(subGridBox.firstChild, subGridBox);
+        }
+        subGridBox.remove();
+      }
     } else {
-      sliderContainer.style.display = "grid";
-      sliderContainer.style.gridTemplateColumns = "1fr";
-      sliderContainer.style.gridTemplateRows = "auto auto";
-      imgBox.style.gridRow = "1 / 2";
-      subGridBox.style.gridRow = "2 / 3";
+      if (!subGridBox) {
+        const newSubGridBox = document.createElement("div");
+        newSubGridBox.classList.add("subGridBox");
+
+        const memeTextBox = sliderContainer.querySelector(".memeTextBox");
+        const memePagination = sliderContainer.querySelector(".pagination");
+
+        if (memeTextBox) newSubGridBox.appendChild(memeTextBox);
+        if (memePagination) newSubGridBox.appendChild(memePagination);
+
+        sliderContainer.appendChild(newSubGridBox);
+      }
     }
   }
 }
