@@ -4,11 +4,13 @@ export class memeSlider {
   constructor(memes) {
     this.memes = memes;
     this.currentIndex = 0;
+    this.render();
+    this.handleResize(); 
+    window.addEventListener("resize", this.handleResize.bind(this)); 
   }
 
   render() {
     const sliderContainer = document.getElementById("memeSlider");
-
     sliderContainer.innerHTML = "";
 
     const imgBox = document.createElement("div");
@@ -47,23 +49,38 @@ export class memeSlider {
       memePagination.appendChild(dot);
     });
 
-    sliderContainer.appendChild(memePicture);
-    sliderContainer.appendChild(memeTextBox);
-    sliderContainer.appendChild(memePagination);
     sliderContainer.appendChild(imgBox);
     sliderContainer.appendChild(subGridBox);
 
-    memeTextBox.appendChild(memeDescription);
+    imgBox.appendChild(memePicture);
     subGridBox.appendChild(memeTextBox);
     subGridBox.appendChild(memePagination);
-    imgBox.appendChild(memePicture);
+    memeTextBox.appendChild(memeDescription);
 
-    return sliderContainer;
+    this.handleResize();
   }
 
   updateSlider() {
-    const sliderContainer = document.getElementById("memeSlider");
-    sliderContainer.innerHTML = "";
     this.render();
+  }
+
+  handleResize() {
+    const sliderContainer = document.getElementById("memeSlider");
+    const imgBox = sliderContainer.querySelector(".imgBox");
+    const subGridBox = sliderContainer.querySelector(".subGridBox");
+
+    if (window.innerWidth >= 500 && window.innerWidth <= 768) {
+
+      sliderContainer.style.display = "flex";
+      sliderContainer.style.flexDirection = "column";
+      imgBox.style.order = "1";
+      subGridBox.style.order = "2";
+    } else {
+      sliderContainer.style.display = "grid";
+      sliderContainer.style.gridTemplateColumns = "1fr";
+      sliderContainer.style.gridTemplateRows = "auto auto";
+      imgBox.style.gridRow = "1 / 2";
+      subGridBox.style.gridRow = "2 / 3";
+    }
   }
 }

@@ -1,0 +1,34 @@
+@media screen and (min-width: 500px) and (max-width: 768px) {
+  #memeSlider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .imgBox {
+    order: 1;
+  }
+
+  .pagination {
+    order: 2;
+  }
+
+  .memeTextBox {
+    order: 3;
+  }
+
+  .memePic {
+    width: 100%;
+    height: auto;
+  }
+
+  .memeTextBox,
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+  .memeContent {
+    justify-items: flex-start;
+  }
+}
