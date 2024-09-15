@@ -1,12 +1,12 @@
 export const meme = [
   {
     id: "01",
-    img: "./assets/sub-buzz.png",
+    img: "./assets/figures-that-arent.jpg",
     description: "Probably everybody knows the feeling",
   },
   {
     id: "02",
-    img: "./assets/sleep-memes.png",
+    img: "./assets/one-does-not-simply-meme-marketing.jpg",
     description: "I feel that hurts",
   },
   {
@@ -16,7 +16,7 @@ export const meme = [
   },
   {
     id: "04",
-    img: "./assets/meme-exhibition.png",
-    description: "Very interesting!",
+    img: "./assets/what-is-a-meme.jpg",
+    description: "Oh, Gosh!",
   },
 ];

@@ -1,0 +1,98 @@
+.wrapper {
+  background-color: black;
+  padding: 20px;
+}
+
+#memeSlider {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.imgBox {
+  grid-column: 1 / span 1;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.memePic {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.memeTextBox {
+  grid-column: 1;
+}
+
+.pagination {
+  grid-column: 2;
+}
+
+.memeContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.subGridBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column: 1 / span 1;
+}
+
+.memeTextBox {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+  padding: 10px;
+}
+
+.memeTextBox p {
+  color: white;
+}
+
+.memeDescription {
+  margin: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: #00c3ff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.dot.active {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 2px white;
+}
+
+.dot:hover {
+  background-color: white;
+}
