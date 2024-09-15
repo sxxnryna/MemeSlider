@@ -73,19 +73,20 @@
 .pagination {
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
   width: 100%;
   padding-top: 10px;
 }
 
 .dot {
-  display: inline-block;
   width: 10px;
   height: 10px;
-  margin: 0 5px;
   background-color: #00c3ff;
   border-radius: 50%;
+  position: relative;
   cursor: pointer;
-  transition: background-color 0.5s, transform 0.5s;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  z-index: 1;
 }
 
 .dot.active {
@@ -96,6 +97,26 @@
 
 .dot:hover {
   background-color: white;
+}
+
+.dot::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  pointer-events: none;
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border-radius: 50%;
+  z-index: 0;
 }
 
 /*Pics&text fade-in/out*/
